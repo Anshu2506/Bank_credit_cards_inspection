@@ -1,0 +1,47 @@
+import os
+from pathlib import Path
+import logging
+
+
+logging.basicConfig(level=logging.INFO)
+
+project_name="mlproject"
+
+list_of_file=[
+    "src/{project_name}/__init__.py",
+    "src/{project_name}/components/__init__.py",
+    "src/{project_name}/components/data_ingestion.py",
+    "src/{project_name}/components/data_transformation.py",
+    "src/{project_name}/components/model_trainer.py",
+    "src/{project_name}/components/model_monitering.py",
+    "src/{project_name}/pipelines/__init__.py",
+    "src/{project_name}/pipelines/training.py",
+    "src/{project_name}/pipelines/prediction.py",
+    "src/{project_name}/exception.py",
+    "src/{project_name}/logger.py",
+    "src/{project_name}/utlis.py",
+    "app.py",
+    "Dockerfile",
+    "requirements.txt",
+    "setup.py"
+]
+
+
+for file_path in list_of_file:
+    file_path=Path(file_path)
+    filedir,filename=os.path.split(file_path)
+
+    if(filedir !=""):
+        os.makedirs(filedir,exist_ok=True)
+        logging.info(f"Creating filedir: {filedir} for the filename {filename}")
+
+    if(not os.path.exists(file_path)) or (os.path.getsize(file_path)==0):
+        with open(file_path,"w") as f:
+            pass
+        logging.info(f"creating a empty filename: {file_path}")
+        
+
+    else:
+        logging.info(f"{filename} is already exists")
+
+
