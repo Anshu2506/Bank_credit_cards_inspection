@@ -23,7 +23,7 @@ def read_sql_data():
             db=db
         )
         logging.info("connection Established",mydb)
-        df=pd.read_sql_query("select * from cards",mydb)
+        df=pd.read_sql_query("select * from students",mydb)
         print (df.head())
 
         return df
